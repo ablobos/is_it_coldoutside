@@ -12,7 +12,9 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${newName.value}&units
      for(i = 0; i< 5; i++){
         var currentday=document.getElementById(`img${i+1}`)
         currentday.src = "http://openweathermap.org/img/wn/"+ data.list[i].weather[0].icon + ".png";
-        document.getElementById("day" + (i+1)).textContent=data.list[i].main.temp;
+        document.getElementById("day" + (i+1) + "Min").innerText = data.list[i].main.temp_min;
+        document.getElementById("day" + (i+1) + "Max").innerText = data.list[i].main.temp_max;
+
      }
     //------------------------------------------------------------
     console.log(data)
