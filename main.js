@@ -1,3 +1,4 @@
+
 function GetInfo(){
 const newName=document.getElementById("cityInput");
 const cityName= document.getElementById("cityName");
@@ -5,13 +6,13 @@ cityName.innerHTML ="--"+newName.value+"--"
 fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${newName.value}&units=imperial&appid=3ed630cea202d710f9db80183c9157ca`)
 .then(response => response.json())
 .then(data => {
-
     //------------------------------------------------------------
 
     //Getting Weather Icons
-     for(i = 0; i<5; i++){
-        document.getElementById(`img${i+1}`).src = "http://openweathermap.org/img/wn/"+ data.list[i].weather[0].icon + ".png";
-        document.getElementById("day" + (i+1)).textContent=data.list[i].temp;
+     for(i = 0; i<data.list; i+= 8){
+        var currentday=document.getElementById(`img${i+1}`)
+        currentday.src = "http://openweathermap.org/img/wn/"+ data.list[i].weather[0].icon + ".png";
+        document.getElementById("day" + (i+1)).textContent=data.list[i].main.temp;
      }
     //------------------------------------------------------------
     console.log(data)
@@ -25,7 +26,7 @@ var d = new Date();
 var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",];
 
 //Function to get the correct integer for the index of the days array
-function CheckDay(day){
+/*function CheckDay(day){
     if(day + d.getDay() > 6){
         return day + d.getDay() - 7;
     }
